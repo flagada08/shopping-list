@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import Products from './components/Products';
 
 export default function App() {
 
@@ -17,7 +18,7 @@ export default function App() {
     if (product != ''){
       setMyProducts(currentMyProducts => [{key: idString, name: product}, ...currentMyProducts]);
     }
-    console.log(myProducts);
+    // console.log(myProducts);
     setProduct('');
   }
 
@@ -38,7 +39,7 @@ export default function App() {
 
       <FlatList
         data={myProducts}
-        renderItem={({item}) => <Text style={styles.element}>{item.name}</Text>}
+        renderItem={({item}) => <Products name={item.name}/>}
       />
 
       {/* <ScrollView>
@@ -70,13 +71,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flexGrow: 1
   },
-  items: {
-    marginTop: 10
-  },
-  element: {
-    backgroundColor: "#d3d3d3",
-    padding: 20,
-    fontSize: 17,
-    marginVertical: 6
-  }
 });
