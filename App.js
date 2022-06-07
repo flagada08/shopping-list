@@ -7,7 +7,7 @@ export default function App() {
 
   const [myProducts, setMyProducts] = useState([]);
 
-  const submitHandler = (product, setProduct) => {
+  const submitHandler = (product) => {
     // console.log(product);
     // setMyProducts([...myProducts, product])
     const idString = Date.now().toString();
@@ -15,7 +15,6 @@ export default function App() {
       setMyProducts(currentMyProducts => [{key: idString, name: product}, ...currentMyProducts]);
     }
     // console.log(myProducts);
-    setProduct('');
   }
 
   return (
