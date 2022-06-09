@@ -17,12 +17,23 @@ export default function App() {
     // console.log(myProducts);
   }
 
+  const deleteProduct = (key) => {
+    setMyProducts(currentMyProducts => {
+      return currentMyProducts.filter(product => product.key != key)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <AddProduct submitHandler={submitHandler}/>
       <FlatList
         data={myProducts}
-        renderItem={({item}) => <Products name={item.name}/>}
+        renderItem={({item}) => 
+          <Products name={item.name} 
+            idString={item.key} 
+            deleteProduct={deleteProduct} 
+          />
+        }
       />
 
       {/* <ScrollView>

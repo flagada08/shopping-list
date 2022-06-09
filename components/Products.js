@@ -1,14 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 
-const Products = ({name}) => {
+const Products = ({name, idString, deleteProduct}) => {
     return (
         <Pressable 
-            onPress={() => console.log('click')}
-            // style={({pressed}) => [
-            //     {backgroundColor: pressed ? "blue" : "red"}
-            // ]}
-            android_ripple={{color: 'purple'}}
+            onPress={() => deleteProduct(idString)}
         >
             <View style={styles.items}>
                 <Text style={styles.element}>{name}</Text>
