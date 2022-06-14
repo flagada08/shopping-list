@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, FlatList, Alert } from 'react-native';
 import Products from './components/Products';
 import AddProduct from './components/AddProduct';
 
 export default function App() {
 
   const [myProducts, setMyProducts] = useState([]);
+  const [count, setCount] = useState([]);
 
   const submitHandler = (product) => {
     // console.log(product);
     // setMyProducts([...myProducts, product])
-    const idString = Date.now().toString();
-    if (product != ''){
+    if (product.length > 1) {
+      const idString = Date.now().toString();
       setMyProducts(currentMyProducts => [{key: idString, name: product}, ...currentMyProducts]);
+    } else {
+      Alert.alert('Désolé', 'Nombre de caractères doit être > 1', 
+      [
+        {
+          text: 'COMPRIS',
+          onPress: () => console.warn("refusé")
+        }
+      ],
+      {
+        cancelable: true,
+        onDismiss: () => console.warn("dismissed")
+      }
+      )
     }
     // console.log(myProducts);
   }
@@ -29,7 +43,8 @@ export default function App() {
       <FlatList
         data={myProducts}
         renderItem={({item}) => 
-          <Products name={item.name} 
+          <Products 
+            name={item.name} 
             idString={item.key} 
             deleteProduct={deleteProduct} 
           />
