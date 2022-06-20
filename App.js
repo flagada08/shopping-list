@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, Modal, Text } from 'react-native';
+import { StyleSheet, View, FlatList, Modal, Text, Pressable } from 'react-native';
 import Products from './components/Products';
 import AddProduct from './components/AddProduct';
 
@@ -44,11 +44,25 @@ export default function App() {
       <Modal
         visible={showModal}
         onRequestClose={() => setShowModal(false)}
+        animationType="slide"
+        hardwareAccelerated
+        transparent
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text>Hello World</Text>
+              <Text style={styles.modalHeaderText}>OUPS!</Text>
+            </View>
+            <View style={styles.modalBody}>
+              <Text style={styles.modalBodyText}>Merci d'indiquer plus d'un seul caractère</Text>
+            </View>
+            <View style={styles.modalFooter}>
+              <Pressable
+              style={styles.pressableBtnModal}
+              onPress={() => setShowModal(false)}
+              >
+                <Text style={styles.modalBtn}>OK</Text>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -104,5 +118,34 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomWidth: 1,
     borderBottomColor: "lightgray"
+  },
+  modalHeaderText: {
+    color: "grey",
+    fontSize: 17
+  },
+  modalBody: {
+    flex: 1,
+    width: "100%",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  modalBodyText: {
+    fontSize: 17,
+  },
+  modalFooter: {
+    width: "100%",
+  },
+  pressableBtnModal: {
+    backgroundColor:"lightseagreen",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15
+  },
+  modalBtn: {
+    fontSize: 17,
+    color: "#fff",
+    textAlign: "center",
+    padding: 16
   }
 });
