@@ -4,16 +4,16 @@ import { StyleSheet, View, TextInput,Button } from 'react-native';
 const AddProduct = ({submitHandler}) => {
 
   const [product, setProduct] = useState('');
-  const [btnDisable, setBtnDisable] = useState(true);
+  // const [btnDisable, setBtnDisable] = useState(true);
 
-  useEffect(() => {
-    if (product.length > 1) {
-      setBtnDisable(false);
-    } else {
-      setBtnDisable(true);
-    }
+  // useEffect(() => {
+  //   if (product.length > 1) {
+  //     setBtnDisable(false);
+  //   } else {
+  //     setBtnDisable(true);
+  //   }
     
-  }, [product]);
+  // }, [product]);
   
 
   const inputHandler = (val) => {
@@ -36,7 +36,7 @@ const AddProduct = ({submitHandler}) => {
             <Button 
                 title="VALIDER"
                 onPress={handleClick}
-                disabled={btnDisable}
+                // disabled={btnDisable}
             />
       </View>
     )
